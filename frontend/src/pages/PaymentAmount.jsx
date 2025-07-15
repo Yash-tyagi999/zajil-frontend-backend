@@ -113,18 +113,6 @@ function PaymentAmount() {
                     <td>2532</td>
                     <td>SAR 545</td>
                   </tr>
-                  <tr>
-                    <td>05</td>
-                    <td>R-005</td>
-                    <td>John Smith</td>
-                    <td>Under Company</td>
-                    <td>ABC Company</td>
-                    <td>+91 9876543210</td>
-                    <td>25/08/2023</td>
-                    <td>234</td>
-                    <td>2532</td>
-                    <td>SAR 545</td>
-                  </tr>
                 </tbody>
               </table>
             </div>

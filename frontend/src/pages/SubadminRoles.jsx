@@ -2,7 +2,6 @@ import React from "react";
 
 function SubadminRoles() {
   return (
-    <div>
       <>
         <div className="WrapperArea">
           <div className="WrapperBox">
@@ -122,7 +121,6 @@ function SubadminRoles() {
           </div>
         </div>
       </>
-    </div>
   );
 }
 

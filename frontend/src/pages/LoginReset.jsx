@@ -67,7 +67,7 @@ const LoginReset = () => {
       if (status === 200) {
         toast.success(message);
         navigate("/loginsuccess");
-      } else if (status === 404||status===401) {
+      } else if (status === 404 || status === 401) {
         toast.error(message);
       } else {
         toast.error("Something went wrong try again");
@@ -80,68 +80,66 @@ const LoginReset = () => {
   };
 
   return (
-    <div>
-      <>
-        <div className="LoginArea">
-          <div className="LoginBox">
-            <div className="LoginHead">
-              <figure>
-                <img src={logo} />
-              </figure>
-              <h5>
-                Let's Started <span>Zajil</span>
-              </h5>
-              <h6>To keep connected wit us please login .</h6>
-            </div>
-            <div className="LoginBody">
-              <h2>
-                Zajil <span>Admin</span>
-              </h2>
-              <h3>
-                <span>Change password</span>
-              </h3>
-              <h6>No Problem! Enter your new password</h6>
-              <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                  <label>Enter new password</label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    placeholder="Enter Password"
-                    name="password"
-                    value={password}
-                    onChange={handleInputChange}
-                  />
-                  <span className="error">{errors?.passError}</span>
-                  <span className="Icon">
-                    <i className="fa fa-eye" />
-                  </span>
-                </div>
-                <div className="form-group">
-                  <label>Confirm Password</label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    placeholder="Confirm Password"
-                    name="confirmPassword"
-                    value={confirmPassword}
-                    onChange={handleInputChange}
-                  />
-                  <span className="error">{errors?.confirmPassError}</span>
-                  <span className="Icon">
-                    <i className="fa fa-eye" />
-                  </span>
-                </div>
+    <>
+      <div className="LoginArea">
+        <div className="LoginBox">
+          <div className="LoginHead">
+            <figure>
+              <img src={logo} />
+            </figure>
+            <h5>
+              Let's Started <span>Zajil</span>
+            </h5>
+            <h6>To keep connected wit us please login .</h6>
+          </div>
+          <div className="LoginBody">
+            <h2>
+              Zajil <span>Admin</span>
+            </h2>
+            <h3>
+              <span>Change password</span>
+            </h3>
+            <h6>No Problem! Enter your new password</h6>
+            <form onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label>Enter new password</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  placeholder="Enter Password"
+                  name="password"
+                  value={password}
+                  onChange={handleInputChange}
+                />
+                <span className="error">{errors?.passError}</span>
+                <span className="Icon">
+                  <i className="fa fa-eye" />
+                </span>
+              </div>
+              <div className="form-group">
+                <label>Confirm Password</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  placeholder="Confirm Password"
+                  name="confirmPassword"
+                  value={confirmPassword}
+                  onChange={handleInputChange}
+                />
+                <span className="error">{errors?.confirmPassError}</span>
+                <span className="Icon">
+                  <i className="fa fa-eye" />
+                </span>
+              </div>
 
-                <button className="Button" type="submit" disabled={disable}>
-                  {disable ? "Confirming..." : "Confirm"}
-                </button>
-              </form>
-            </div>
+              <button className="Button" type="submit" disabled={disable}>
+                {disable ? "Confirming..." : "Confirm"}
+              </button>
+            </form>
           </div>
         </div>
-      </>
-    </div>
+      </div>
+    </>
   );
 };
 

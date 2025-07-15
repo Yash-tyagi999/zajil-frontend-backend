@@ -71,55 +71,53 @@ const LoginForgot = () => {
   };
 
   return (
-    <div>
-      <>
-        <div className="LoginArea">
-          <div className="LoginBox">
-            <div className="LoginHead">
-              <figure>
-                <img src={logo} />
-              </figure>
-              <h5>
-                Let's Started <span>Zajil</span>
-              </h5>
-              <h6>To keep connected wit us please login .</h6>
-            </div>
-            <div className="LoginBody">
-              <h2>
-                Zajil <span>Admin</span>
-              </h2>
-              <h3>
-                <span>Forgot Password</span>
-              </h3>
-              <h6>
-                No Problem! Just provide your e-mail address and we'll <br />{" "}
-                send you a reset OTP.
-              </h6>
-              <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                  <label>Email Address</label>
-                  <input
-                    type="text"
-                    placeholder="Enter Email Address"
-                    className="form-control"
-                    name="email_id"
-                    value={email_id}
-                    onChange={handleInputChange}
-                  />
-                  <span className="error">{errors?.emailError}</span>
-                  <span className="Icon">
-                    <i className="fa fa-envelope" />
-                  </span>
-                </div>
-                <button className="Button" type="submit" disabled={disable}>
-                  {disable ? "Sending OTP..." : "Send OTP"}
-                </button>
-              </form>
-            </div>
+    <>
+      <div className="LoginArea">
+        <div className="LoginBox">
+          <div className="LoginHead">
+            <figure>
+              <img src={logo} />
+            </figure>
+            <h5>
+              Let's Started <span>Zajil</span>
+            </h5>
+            <h6>To keep connected wit us please login .</h6>
+          </div>
+          <div className="LoginBody">
+            <h2>
+              Zajil <span>Admin</span>
+            </h2>
+            <h3>
+              <span>Forgot Password</span>
+            </h3>
+            <h6>
+              No Problem! Just provide your e-mail address and we'll <br /> send
+              you a reset OTP.
+            </h6>
+            <form onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label>Email Address</label>
+                <input
+                  type="text"
+                  placeholder="Enter Email Address"
+                  className="form-control"
+                  name="email_id"
+                  value={email_id}
+                  onChange={handleInputChange}
+                />
+                <span className="error">{errors?.emailError}</span>
+                <span className="Icon">
+                  <i className="fa fa-envelope" />
+                </span>
+              </div>
+              <button className="Button" type="submit" disabled={disable}>
+                {disable ? "Sending OTP..." : "Send OTP"}
+              </button>
+            </form>
           </div>
         </div>
-      </>
-    </div>
+      </div>
+    </>
   );
 };
 

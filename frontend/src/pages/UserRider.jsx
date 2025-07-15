@@ -88,7 +88,7 @@ function UserRider() {
   };
 
   return (
-    <div>
+    <>
       <div className="WrapperArea">
         <div className="WrapperBox">
           <div className="TitleBox">
@@ -242,9 +242,7 @@ function UserRider() {
           </div>
         </div>
       )}
-
-     
-    </div>
+    </>
   );
 }
 

@@ -7,7 +7,7 @@ const bannerSchema = new mongoose.Schema(
       type: Number,
       unique: true,
     },
-    bannerTitle: { type: String, required: true},
+    bannerTitle: { type: String, required: true },
 
     bannerImageUrl: {
       type: String,

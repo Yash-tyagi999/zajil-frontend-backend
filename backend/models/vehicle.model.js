@@ -45,7 +45,7 @@ vehicleSchema.pre("save", async function (next) {
         { $inc: { seq: 1 } },
         { new: true, upsert: true }
       );
-      this.vehicleId = counter.seq +23000;
+      this.vehicleId = counter.seq + 23000;
     } catch (err) {
       return next(err);
     }

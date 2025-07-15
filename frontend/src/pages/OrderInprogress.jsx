@@ -1,4 +1,4 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getOrders, updateOrderStatus } from "../reduxToolkit/slices/order";
 import toast from "react-hot-toast";

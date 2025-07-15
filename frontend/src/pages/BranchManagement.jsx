@@ -96,6 +96,7 @@ function BranchManagement() {
   const modalRef = useRef(null);
 
   const [debouncedSearch, setDebouncedSearch] = useState(search);
+
   useEffect(() => {
     const handler = setTimeout(() => setDebouncedSearch(search.trim()), 300);
     return () => clearTimeout(handler);

@@ -109,89 +109,91 @@ function CreateUser() {
   };
 
   return (
-    <div className="WrapperArea">
-      <div className="WrapperBox">
-        <div>
-          <div className="LoginBody">
-            <form onSubmit={handleSignIn}>
-              <div className="form-group">
-                <label>Name</label>
-                <input
-                  type="text"
-                  placeholder="Enter name"
-                  className="form-control"
-                  name="user_name"
-                  value={user_name}
-                  onChange={handleInputChange}
-                />
-                <span className="text-danger">{errors?.nameError}</span>
-                <span className="Icon"></span>
-              </div>
+    <>
+      <div className="WrapperArea">
+        <div className="WrapperBox">
+          <div>
+            <div className="LoginBody">
+              <form onSubmit={handleSignIn}>
+                <div className="form-group">
+                  <label>Name</label>
+                  <input
+                    type="text"
+                    placeholder="Enter name"
+                    className="form-control"
+                    name="user_name"
+                    value={user_name}
+                    onChange={handleInputChange}
+                  />
+                  <span className="text-danger">{errors?.nameError}</span>
+                  <span className="Icon"></span>
+                </div>
 
-              <div className="form-group">
-                <label>Email ID</label>
-                <input
-                  type="email"
-                  placeholder="Enter Email ID"
-                  className="form-control"
-                  name="email_id"
-                  value={email_id}
-                  onChange={handleInputChange}
-                />
-                <span className="text-danger">{errors?.emailError}</span>
-                <span className="Icon"></span>
-              </div>
+                <div className="form-group">
+                  <label>Email ID</label>
+                  <input
+                    type="email"
+                    placeholder="Enter Email ID"
+                    className="form-control"
+                    name="email_id"
+                    value={email_id}
+                    onChange={handleInputChange}
+                  />
+                  <span className="text-danger">{errors?.emailError}</span>
+                  <span className="Icon"></span>
+                </div>
 
-              <div className="form-group">
-                <label>Password</label>
-                <input
-                  type="password"
-                  placeholder="Enter Password"
-                  className="form-control"
-                  name="password"
-                  value={password}
-                  onChange={handleInputChange}
-                />
-                <span className="text-danger">{errors?.passError}</span>
-                <span className="Icon"></span>
-              </div>
+                <div className="form-group">
+                  <label>Password</label>
+                  <input
+                    type="password"
+                    placeholder="Enter Password"
+                    className="form-control"
+                    name="password"
+                    value={password}
+                    onChange={handleInputChange}
+                  />
+                  <span className="text-danger">{errors?.passError}</span>
+                  <span className="Icon"></span>
+                </div>
 
-              <div className="form-group">
-                <label>Phone Number</label>
-                <input
-                  type="text"
-                  placeholder="Enter Phone Number"
-                  className="form-control"
-                  name="phone_number"
-                  value={phone_number}
-                  onChange={handleInputChange}
-                />
-                <span className="text-danger">{errors?.numberError}</span>
-                <span className="Icon"></span>
-              </div>
+                <div className="form-group">
+                  <label>Phone Number</label>
+                  <input
+                    type="text"
+                    placeholder="Enter Phone Number"
+                    className="form-control"
+                    name="phone_number"
+                    value={phone_number}
+                    onChange={handleInputChange}
+                  />
+                  <span className="text-danger">{errors?.numberError}</span>
+                  <span className="Icon"></span>
+                </div>
 
-              <div className="form-group">
-                <label>Address</label>
-                <input
-                  type="text"
-                  placeholder="Enter Address"
-                  className="form-control"
-                  name="address"
-                  value={address}
-                  onChange={handleInputChange}
-                />
-                <span className="text-danger">{errors?.addressError}</span>
-                <span className="Icon"></span>
-              </div>
+                <div className="form-group">
+                  <label>Address</label>
+                  <input
+                    type="text"
+                    placeholder="Enter Address"
+                    className="form-control"
+                    name="address"
+                    value={address}
+                    onChange={handleInputChange}
+                  />
+                  <span className="text-danger">{errors?.addressError}</span>
+                  <span className="Icon"></span>
+                </div>
 
-              <button className="Button" type="submit" disabled={disable}>
-                {disable ? "Creating User..." : "Create User"}{" "}
-              </button>
-            </form>
+                <button className="Button" type="submit" disabled={disable}>
+                  {disable ? "Creating User..." : "Create User"}{" "}
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -109,6 +109,7 @@ function BannerManagement() {
       toast.error("Error uploading image");
     }
   };
+
   const validateForm = () => {
     const newErrors = {};
     let valid = true;

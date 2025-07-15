@@ -11,13 +11,13 @@ const adminSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  otp : {
+  otp: {
     type: String,
-    default: ""
+    default: "",
   },
-  otpTimer :{
-    type : Number
-  }
+  otpTimer: {
+    type: Number,
+  },
 });
 const Admin = mongoose.model("Admin", adminSchema);
 export default Admin;

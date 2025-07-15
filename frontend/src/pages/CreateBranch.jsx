@@ -121,97 +121,99 @@ function CreateBranch() {
   };
 
   return (
-    <div className="WrapperArea">
-      <div className="WrapperBox">
-        <div>
-          <div className="LoginBody">
-            <form onSubmit={handleSignIn}>
-              <div className="form-group">
-                <label>Branch Name</label>
-                <input
-                  type="text"
-                  placeholder="Enter branch name"
-                  className="form-control"
-                  name="branch_name"
-                  value={branch_name}
-                  onChange={handleInputChange}
-                />
-                <span className="text-danger">{errors?.nameError}</span>
-              </div>
+    <>
+      <div className="WrapperArea">
+        <div className="WrapperBox">
+          <div>
+            <div className="LoginBody">
+              <form onSubmit={handleSignIn}>
+                <div className="form-group">
+                  <label>Branch Name</label>
+                  <input
+                    type="text"
+                    placeholder="Enter branch name"
+                    className="form-control"
+                    name="branch_name"
+                    value={branch_name}
+                    onChange={handleInputChange}
+                  />
+                  <span className="text-danger">{errors?.nameError}</span>
+                </div>
 
-              <div className="form-group">
-                <label>Branch City</label>
-                <select
-                  className="form-control"
-                  name="branch_city"
-                  value={branch_city}
-                  onChange={handleInputChange}
-                >
-                  <option value="">Select Branch City</option>
-                  <option value="Gurugram">Gurugram</option>
-                  <option value="Noida">Noida</option>
-                </select>
+                <div className="form-group">
+                  <label>Branch City</label>
+                  <select
+                    className="form-control"
+                    name="branch_city"
+                    value={branch_city}
+                    onChange={handleInputChange}
+                  >
+                    <option value="">Select Branch City</option>
+                    <option value="Gurugram">Gurugram</option>
+                    <option value="Noida">Noida</option>
+                  </select>
 
-                <span className="text-danger">{errors?.cityError}</span>
-              </div>
+                  <span className="text-danger">{errors?.cityError}</span>
+                </div>
 
-              <div className="form-group">
-                <label>Latitude</label>
-                <input
-                  type="text"
-                  placeholder="Enter Latitude"
-                  className="form-control"
-                  name="latitude"
-                  value={latitude}
-                  onChange={handleInputChange}
-                />
-                <span className="text-danger">{errors?.latError}</span>
-              </div>
+                <div className="form-group">
+                  <label>Latitude</label>
+                  <input
+                    type="text"
+                    placeholder="Enter Latitude"
+                    className="form-control"
+                    name="latitude"
+                    value={latitude}
+                    onChange={handleInputChange}
+                  />
+                  <span className="text-danger">{errors?.latError}</span>
+                </div>
 
-              <div className="form-group">
-                <label>Longitude</label>
-                <input
-                  type="text"
-                  placeholder="Enter Longitude"
-                  className="form-control"
-                  name="longitude"
-                  value={longitude}
-                  onChange={handleInputChange}
-                />
-                <span className="text-danger">{errors?.longError}</span>
-              </div>
+                <div className="form-group">
+                  <label>Longitude</label>
+                  <input
+                    type="text"
+                    placeholder="Enter Longitude"
+                    className="form-control"
+                    name="longitude"
+                    value={longitude}
+                    onChange={handleInputChange}
+                  />
+                  <span className="text-danger">{errors?.longError}</span>
+                </div>
 
-              <div className="form-group">
-                <label>Business Start Hours</label>
-                <input
-                  type="time"
-                  className="form-control"
-                  name="business_hours_start"
-                  value={business_hours_start}
-                  onChange={handleInputChange}
-                />
-                <span className="text-danger">{errors?.hoursstartError}</span>
-              </div>
-              <div className="form-group">
-                <label>Business End Hours</label>
-                <input
-                  type="time"
-                  className="form-control"
-                  name="business_hours_end"
-                  value={business_hours_end}
-                  onChange={handleInputChange}
-                />
-                <span className="text-danger">{errors?.hoursendError}</span>
-              </div>
+                <div className="form-group">
+                  <label>Business Start Hours</label>
+                  <input
+                    type="time"
+                    className="form-control"
+                    name="business_hours_start"
+                    value={business_hours_start}
+                    onChange={handleInputChange}
+                  />
+                  <span className="text-danger">{errors?.hoursstartError}</span>
+                </div>
+                <div className="form-group">
+                  <label>Business End Hours</label>
+                  <input
+                    type="time"
+                    className="form-control"
+                    name="business_hours_end"
+                    value={business_hours_end}
+                    onChange={handleInputChange}
+                  />
+                  <span className="text-danger">{errors?.hoursendError}</span>
+                </div>
 
-              <button className="Button" type="submit" disabled={disable}>
-                {disable ? "Creating Branch..." : "Create Branch"}{" "}
-              </button>
-            </form>
+                <button className="Button" type="submit" disabled={disable}>
+                  {disable ? "Creating Branch..." : "Create Branch"}{" "}
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -81,7 +81,7 @@ const Login = () => {
         }
         navigate("/dashboard");
       } else if (status === 401) {
-        toast.error(message||"User not found");
+        toast.error(message || "User not found");
       } else {
         toast.error(message || "Login failed");
       }
@@ -93,86 +93,88 @@ const Login = () => {
   };
 
   return (
-    <div className="LoginArea">
-      <div className="LoginBox">
-        <div className="LoginHead">
-          <figure>
-            <img src={logo} alt="Zajil Logo" />
-          </figure>
-          <h5>
-            Let's Get Started <span>Zajil</span>
-          </h5>
-          <h6>To stay connected with us, please log in.</h6>
-        </div>
+    <>
+      <div className="LoginArea">
+        <div className="LoginBox">
+          <div className="LoginHead">
+            <figure>
+              <img src={logo} alt="Zajil Logo" />
+            </figure>
+            <h5>
+              Let's Get Started <span>Zajil</span>
+            </h5>
+            <h6>To stay connected with us, please log in.</h6>
+          </div>
 
-        <div className="LoginBody">
-          <h2>
-            Zajil <span>Admin</span>
-          </h2>
-          <h3>
-            <span>Login to your account</span>
-          </h3>
-          <h6>
-            Enter your email address and password to <br /> access the admin
-            panel.
-          </h6>
+          <div className="LoginBody">
+            <h2>
+              Zajil <span>Admin</span>
+            </h2>
+            <h3>
+              <span>Login to your account</span>
+            </h3>
+            <h6>
+              Enter your email address and password to <br /> access the admin
+              panel.
+            </h6>
 
-          <form onSubmit={handleSignIn}>
-            <div className="form-group">
-              <label>Email ID</label>
-              <input
-                type="email"
-                placeholder="Enter Email ID"
-                className="form-control"
-                name="email_id"
-                value={email_id}
-                onChange={handleInputChange}
-              />
-              <span className="error">{errors?.emailError}</span>
-              <span className="Icon">
-                <i className="fa fa-envelope" />
-              </span>
-            </div>
-
-            <div className="form-group">
-              <label>Password</label>
-              <input
-                type="password"
-                placeholder="Enter Password"
-                className="form-control"
-                name="password"
-                value={password}
-                onChange={handleInputChange}
-              />
-              <span className="error">{errors?.passError}</span>
-              <span className="Icon">
-                <i className="fa fa-unlock-alt" />
-              </span>
-            </div>
-
-            <div className="Checkboxs">
-              <label className="CheckBox" htmlFor="remember">
-                Remember Me
+            <form onSubmit={handleSignIn}>
+              <div className="form-group">
+                <label>Email ID</label>
                 <input
-                  type="checkbox"
-                  id="remember"
-                  name="check"
-                  checked={check}
+                  type="email"
+                  placeholder="Enter Email ID"
+                  className="form-control"
+                  name="email_id"
+                  value={email_id}
                   onChange={handleInputChange}
                 />
-                <span className="checkmark" />
-              </label>
-              <Link to="/loginforgot">Forgot password?</Link>
-            </div>
+                <span className="error">{errors?.emailError}</span>
+                <span className="Icon">
+                  <i className="fa fa-envelope" />
+                </span>
+              </div>
 
-            <button className="Button" type="submit" disabled={disable}>
-              {disable ? "Loading..." : "Log In"}{" "}
-              <i className="fa fa-sign-in" />
-            </button>
-          </form>
+              <div className="form-group">
+                <label>Password</label>
+                <input
+                  type="password"
+                  placeholder="Enter Password"
+                  className="form-control"
+                  name="password"
+                  value={password}
+                  onChange={handleInputChange}
+                />
+                <span className="error">{errors?.passError}</span>
+                <span className="Icon">
+                  <i className="fa fa-unlock-alt" />
+                </span>
+              </div>
+
+              <div className="Checkboxs">
+                <label className="CheckBox" htmlFor="remember">
+                  Remember Me
+                  <input
+                    type="checkbox"
+                    id="remember"
+                    name="check"
+                    checked={check}
+                    onChange={handleInputChange}
+                  />
+                  <span className="checkmark" />
+                </label>
+                <Link to="/loginforgot">Forgot password?</Link>
+              </div>
+
+              <button className="Button" type="submit" disabled={disable}>
+                {disable ? "Loading..." : "Log In"}{" "}
+                <i className="fa fa-sign-in" />
+              </button>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

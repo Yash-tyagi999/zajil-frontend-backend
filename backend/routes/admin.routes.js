@@ -1,6 +1,14 @@
 import express from "express";
 
-import { forgotPassword, login, logout, resendOTP, resetPassword, signup, verifyOTP } from "../controllers/admin.controller.js";
+import {
+  forgotPassword,
+  login,
+  logout,
+  resendOTP,
+  resetPassword,
+  signup,
+  verifyOTP,
+} from "../controllers/admin.controller.js";
 
 const router = express.Router();
 

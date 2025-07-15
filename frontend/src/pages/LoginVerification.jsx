@@ -53,7 +53,7 @@ const LoginVerification = () => {
     return valid;
   };
 
-  const handleResend = async() => {
+  const handleResend = async () => {
     try {
       const res = await dispatch(resendOTP());
       const status = res?.payload?.status;
@@ -61,7 +61,7 @@ const LoginVerification = () => {
 
       if (status === 200) {
         toast.success(message);
-      } else if (status === 404||status===401) {
+      } else if (status === 404 || status === 401) {
         toast.error(message);
       } else {
         toast.error("Something went wrong try again");
@@ -91,7 +91,7 @@ const LoginVerification = () => {
       if (status === 200) {
         toast.success(message);
         navigate("/loginreset");
-      } else if (status === 400 || status ===401) {
+      } else if (status === 400 || status === 401) {
         toast.error(message);
       } else {
         toast.error("Something went wrong try again");
@@ -104,59 +104,61 @@ const LoginVerification = () => {
   };
 
   return (
-    <div className="LoginArea">
-      <div className="LoginBox">
-        <div className="LoginHead">
-          <figure>
-            <img src={logo} alt="Zajil Logo" />
-          </figure>
-          <h5>
-            Let's Started <span>Zajil</span>
-          </h5>
-          <h6>To keep connected with us please login.</h6>
-        </div>
+    <>
+      <div className="LoginArea">
+        <div className="LoginBox">
+          <div className="LoginHead">
+            <figure>
+              <img src={logo} alt="Zajil Logo" />
+            </figure>
+            <h5>
+              Let's Started <span>Zajil</span>
+            </h5>
+            <h6>To keep connected with us please login.</h6>
+          </div>
 
-        <div className="LoginBody">
-          <h2>
-            Zajil <span>Admin</span>
-          </h2>
-          <h3>
-            <span>OTP Verification</span>
-          </h3>
-          <h6>
-            Please enter 6 digit OTP Verification code received <br /> on your
-            email address.
-          </h6>
+          <div className="LoginBody">
+            <h2>
+              Zajil <span>Admin</span>
+            </h2>
+            <h3>
+              <span>OTP Verification</span>
+            </h3>
+            <h6>
+              Please enter 6 digit OTP Verification code received <br /> on your
+              email address.
+            </h6>
 
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <div className="OTPBox">
-                {otp.map((digit, index) => (
-                  <input
-                    key={index}
-                    type="text"
-                    className="form-control"
-                    maxLength={1}
-                    inputMode="numeric"
-                    value={digit}
-                    ref={(el) => (inputsRef.current[index] = el)}
-                    onChange={(e) => handleChange(e.target.value, index)}
-                    onKeyDown={(e) => handleKeyDown(e, index)}
-                  />
-                ))}
+            <form onSubmit={handleSubmit}>
+              <div className="form-group">
+                <div className="OTPBox">
+                  {otp.map((digit, index) => (
+                    <input
+                      key={index}
+                      type="text"
+                      className="form-control"
+                      maxLength={1}
+                      inputMode="numeric"
+                      value={digit}
+                      ref={(el) => (inputsRef.current[index] = el)}
+                      onChange={(e) => handleChange(e.target.value, index)}
+                      onKeyDown={(e) => handleKeyDown(e, index)}
+                    />
+                  ))}
+                </div>
+                <span className="error">{errors?.OTPError}</span>
+                <p className="text-right">
+                  <a onClick={handleResend}>Resend OTP</a>
+                </p>
               </div>
-              <span className="error">{errors?.OTPError}</span>
-              <p className="text-right">
-                <a onClick={handleResend}>Resend OTP</a>
-              </p>
-            </div>
-            <button className="Button" type="submit" disabled={disable}>
-              {disable ? "Verifying OTP..." : "Verify OTP"}
-            </button>
-          </form>
+              <button className="Button" type="submit" disabled={disable}>
+                {disable ? "Verifying OTP..." : "Verify OTP"}
+              </button>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

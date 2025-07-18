@@ -6,6 +6,7 @@ import branchMgmtSlice from "./slices/branch";
 import bannerMgmtSlice from "./slices/banner";
 import companyMgmtSlice from "./slices/company";
 import vehicleMgmtSlice from "./slices/company";
+import roleMgmtSlice from "./slices/company";
 
 const rootReducer = combineReducers({
   authMgmt: authMgmtSlice,
@@ -15,5 +16,6 @@ const rootReducer = combineReducers({
   bannerMgmt: bannerMgmtSlice,
   companyMgmt: companyMgmtSlice,
   vehicleMgmt: vehicleMgmtSlice,
+  roleMgmt: roleMgmtSlice,
 });
 export default rootReducer;

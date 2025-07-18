@@ -34,6 +34,8 @@ import UserRiderDetails from "./pages/UserRiderDetails";
 import OrderDetails from "./pages/OrderDetails";
 import SyncLogout from "./components/SyncLogout";
 import CreateBranch from "./pages/CreateBranch";
+import SubadminRolesAdd from "./pages/SubadminRolesAdd";
+import SubadminRolesEdit from "./pages/SubadminRolesEdit";
 
 function App() {
   return (
@@ -85,6 +87,11 @@ function App() {
               />
               <Route path="/subadmin" element={<Subadmin />} />
               <Route path="/subadminroles" element={<SubadminRoles />} />
+              <Route path="/subadminrolesadd" element={<SubadminRolesAdd />} />
+              <Route
+                path="/subadminrolesedit/:roleId"
+                element={<SubadminRolesEdit />}
+              />
               <Route path="/settings" element={<Settings />} />
               <Route path="/pricemanagement" element={<PriceManagement />} />
             </Route>

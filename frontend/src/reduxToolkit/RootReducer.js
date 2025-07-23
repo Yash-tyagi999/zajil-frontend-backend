@@ -9,13 +9,13 @@ import vehicleMgmtSlice from "./slices/company";
 import roleMgmtSlice from "./slices/company";
 
 const rootReducer = combineReducers({
-  authMgmt: authMgmtSlice,
-  userMgmt: userMgmtSlice,
-  riderMgmt: riderMgmtSlice,
-  branchMgmt: branchMgmtSlice,
-  bannerMgmt: bannerMgmtSlice,
-  companyMgmt: companyMgmtSlice,
-  vehicleMgmt: vehicleMgmtSlice,
-  roleMgmt: roleMgmtSlice,
+  authMgmtSlice,
+  userMgmtSlice,
+  riderMgmtSlice,
+  branchMgmtSlice,
+  bannerMgmtSlice,
+  companyMgmtSlice,
+  vehicleMgmtSlice,
+  roleMgmtSlice,
 });
 export default rootReducer;

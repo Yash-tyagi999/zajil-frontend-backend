@@ -11,6 +11,7 @@ import companyRoutes from "./routes/company.routes.js";
 import vehicleRoutes from "./routes/vehicle.routes.js";
 import orderRoutes from "./routes/order.routes.js";
 import roleRoutes from "./routes/role.routes.js";
+import subadminRoutes from "./routes/subadmin.routes.js";
 
 import uploadRoutes from "./routes/upload.routes.js";
 
@@ -42,6 +43,7 @@ app.use("/api/company", companyRoutes);
 app.use("/api/vehicle", vehicleRoutes);
 app.use("/api/order", orderRoutes);
 app.use("/api/role", roleRoutes);
+app.use("/api/subadmin", subadminRoutes);
 
 app.use("/api", uploadRoutes);
 

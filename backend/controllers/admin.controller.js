@@ -4,6 +4,8 @@ import crypto from "crypto";
 import Admin from "../models/admin.model.js";
 import jwt from "jsonwebtoken";
 import { genToken } from "../utils/token.js";
+import Subadmin from "../models/subadmin.model.js";
+import Role from "../models/role.model.js";
 
 export const signup = async (req, res) => {
   try {
@@ -35,6 +37,14 @@ export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
     const admin = await Admin.findOne({ email });
+    let roleType = "admin";
+
+    if (!admin) {
+      // If not admin, check Subadmins
+      admin = await Subadmin.findOne({ email });
+      roleType = "subadmin";
+    }
+
     if (!admin) {
       return res.status(401).json({
         message: "Invalid credentials, please check email and password",
@@ -46,10 +56,29 @@ export const login = async (req, res) => {
         message: "Invalid credentials, please check email and password",
       });
     }
-    genToken(res, admin);
-    return res
-      .status(200)
-      .json({ message: "Admin login successfully", email: admin.email });
+    genToken(res, admin, roleType);
+    let roleData = {};
+
+    if (roleType === "subadmin") {
+      const role = await Role.findById(admin.subadminRoleId);
+      roleData = {
+        roleName: admin.subadminRoleName,
+        roleId: admin.subadminRoleId,
+        moduleAccess: role?.moduleName || [],
+      };
+    }
+
+    return res.status(200).json({
+      message: `${
+        roleType === "admin" ? "Admin" : "Subadmin"
+      } login successfully`,
+      admin: {
+        id: admin._id,
+        email: admin.email || admin.subadminEmail,
+        roleType,
+        ...roleData,
+      },
+    });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ message: "error in login controller" });

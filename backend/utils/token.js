@@ -1,10 +1,11 @@
 import jwt from "jsonwebtoken";
 
-export const genToken = async (res,user) => {
+export const genToken = async (res, user, roleType) => {
   const token = jwt.sign(
     {
       id: user._id,
       email: user.email,
+      roleType,
     },
     process.env.JWT_KEY,
     { expiresIn: "7d" }

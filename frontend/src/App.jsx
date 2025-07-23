@@ -36,6 +36,7 @@ import SyncLogout from "./components/SyncLogout";
 import CreateBranch from "./pages/CreateBranch";
 import SubadminRolesAdd from "./pages/SubadminRolesAdd";
 import SubadminRolesEdit from "./pages/SubadminRolesEdit";
+import SubadminDetails from "./pages/SubadminDetails";
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
           <Route path="/loginverification" element={<LoginVerification />} />
           <Route path="/loginreset" element={<LoginReset />} />
           <Route path="/loginsuccess" element={<LoginSuccess />} />
+          
           <Route element={<UserAuthProtect />}>
             <Route element={<HeaderSidenav />}>
               <Route path="/dashboard" element={<Dashboard />} />
@@ -92,10 +94,12 @@ function App() {
                 path="/subadminrolesedit/:roleId"
                 element={<SubadminRolesEdit />}
               />
+              <Route path="/subadmindetails" element={<SubadminDetails />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="/pricemanagement" element={<PriceManagement />} />
             </Route>
           </Route>
+
         </Routes>
         <Toaster />
       </div>

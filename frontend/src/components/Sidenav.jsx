@@ -6,7 +6,23 @@ import toast from "react-hot-toast";
 import logo from "../images/logo.png";
 import { adminLogout } from "../reduxToolkit/slices/auth";
 
+import { useSelector } from "react-redux";
+
 function Sidenav() {
+  const EMPTY_PERMISSIONS = [];
+
+  const permissionsList = useSelector(
+    (state) => state.authMgmtSlice?.permissionsList ?? EMPTY_PERMISSIONS
+  );
+  const roleType = useSelector((state) => state.authMgmtSlice?.roleType ?? "");
+
+  const hasReadAccess = (moduleName) => {
+    const module = permissionsList.find(
+      (mod) => mod.name?.toLowerCase() === moduleName?.toLowerCase()
+    );
+    return module?.read === true;
+  };
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -44,6 +60,7 @@ function Sidenav() {
 
       <div className="SidenavBody">
         <ul>
+          {/* Dashboard */}
           <li>
             <NavLink
               to="/dashboard"
@@ -59,289 +76,323 @@ function Sidenav() {
           </li>
 
           {/* User Management */}
-          <li className={`dropdown ${openDropdown === "user" ? "active" : ""}`}>
-            <div
-              onClick={() => toggleDropdown("user")}
-              className="dropdown-toggle"
+          {(roleType === "Admin" || hasReadAccess("User Management")) && (
+            <li
+              className={`dropdown ${openDropdown === "user" ? "active" : ""}`}
             >
-              <span className="Icon">
-                <i className="fa fa-user" />
-              </span>{" "}
-              User Management
-              <i
-                className={`fa ${
-                  openDropdown === "user" ? "fa-chevron-up" : "fa-chevron-down"
-                } float-right`}
-                style={{ marginTop: "3px" }}
-              />
-            </div>
-            {openDropdown === "user" && (
-              <ol className="dropdown-menu">
-                <li>
-                  <NavLink
-                    to="/usercustomer"
-                    className={({ isActive }) =>
-                      isActive ? "nav-item active" : "nav-item"
-                    }
-                  >
-                    Customer
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/userrider"
-                    className={({ isActive }) =>
-                      isActive ? "nav-item active" : "nav-item"
-                    }
-                  >
-                    Rider
-                  </NavLink>
-                </li>
-              </ol>
-            )}
-          </li>
+              <div
+                onClick={() => toggleDropdown("user")}
+                className="dropdown-toggle"
+              >
+                <span className="Icon">
+                  <i className="fa fa-user" />
+                </span>{" "}
+                User Management
+                <i
+                  className={`fa ${
+                    openDropdown === "user"
+                      ? "fa-chevron-up"
+                      : "fa-chevron-down"
+                  } float-right`}
+                  style={{ marginTop: "3px" }}
+                />
+              </div>
+              {openDropdown === "user" && (
+                <ol className="dropdown-menu">
+                  <li>
+                    <NavLink
+                      to="/usercustomer"
+                      className={({ isActive }) =>
+                        isActive ? "nav-item active" : "nav-item"
+                      }
+                    >
+                      Customer
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/userrider"
+                      className={({ isActive }) =>
+                        isActive ? "nav-item active" : "nav-item"
+                      }
+                    >
+                      Rider
+                    </NavLink>
+                  </li>
+                </ol>
+              )}
+            </li>
+          )}
 
-          <li>
-            <NavLink
-              to="/branchmanagement"
-              className={({ isActive }) =>
-                isActive ? "nav-item active" : "nav-item"
-              }
-            >
-              <span className="Icon">
-                <i className="fa fa-connectdevelop" />
-              </span>{" "}
-              Branch Management
-            </NavLink>
-          </li>
+          {/* Branch Management */}
+          {(roleType === "Admin" || hasReadAccess("Branch Management")) && (
+            <li>
+              <NavLink
+                to="/branchmanagement"
+                className={({ isActive }) =>
+                  isActive ? "nav-item active" : "nav-item"
+                }
+              >
+                <span className="Icon">
+                  <i className="fa fa-connectdevelop" />
+                </span>{" "}
+                Branch Management
+              </NavLink>
+            </li>
+          )}
 
-          <li>
-            <NavLink
-              to="/bannermanagement"
-              className={({ isActive }) =>
-                isActive ? "nav-item active" : "nav-item"
-              }
-            >
-              <span className="Icon">
-                <i className="fa fa-bookmark" />
-              </span>{" "}
-              Banner Management
-            </NavLink>
-          </li>
+          {/* Banner Management */}
+          {(roleType === "Admin" || hasReadAccess("Banner Management")) && (
+            <li>
+              <NavLink
+                to="/bannermanagement"
+                className={({ isActive }) =>
+                  isActive ? "nav-item active" : "nav-item"
+                }
+              >
+                <span className="Icon">
+                  <i className="fa fa-bookmark" />
+                </span>{" "}
+                Banner Management
+              </NavLink>
+            </li>
+          )}
 
-          <li>
-            <NavLink
-              to="/companymanagement"
-              className={({ isActive }) =>
-                isActive ? "nav-item active" : "nav-item"
-              }
-            >
-              <span className="Icon">
-                <i className="fa fa-building-o" />
-              </span>{" "}
-              Company Management
-            </NavLink>
-          </li>
+          {/* Company Management */}
+          {(roleType === "Admin" || hasReadAccess("Company Management")) && (
+            <li>
+              <NavLink
+                to="/companymanagement"
+                className={({ isActive }) =>
+                  isActive ? "nav-item active" : "nav-item"
+                }
+              >
+                <span className="Icon">
+                  <i className="fa fa-building-o" />
+                </span>{" "}
+                Company Management
+              </NavLink>
+            </li>
+          )}
 
-          <li>
-            <NavLink
-              to="/vehiclemanagement"
-              className={({ isActive }) =>
-                isActive ? "nav-item active" : "nav-item"
-              }
-            >
-              <span className="Icon">
-                <i className="fa fa-taxi" />
-              </span>{" "}
-              Vehicle Management
-            </NavLink>
-          </li>
+          {/* Vehicle Management */}
+          {(roleType === "Admin" || hasReadAccess("Vehicle Management")) && (
+            <li>
+              <NavLink
+                to="/vehiclemanagement"
+                className={({ isActive }) =>
+                  isActive ? "nav-item active" : "nav-item"
+                }
+              >
+                <span className="Icon">
+                  <i className="fa fa-taxi" />
+                </span>{" "}
+                Vehicle Management
+              </NavLink>
+            </li>
+          )}
 
           {/* Order Management */}
-          <li
-            className={`dropdown ${openDropdown === "order" ? "active" : ""}`}
-          >
-            <div
-              onClick={() => toggleDropdown("order")}
-              className="dropdown-toggle"
+          {(roleType === "Admin" || hasReadAccess("Order Management")) && (
+            <li
+              className={`dropdown ${openDropdown === "order" ? "active" : ""}`}
             >
-              <span className="Icon">
-                <i className="fa fa-server" />
-              </span>{" "}
-              Order Management
-              <i
-                className={`fa ${
-                  openDropdown === "order" ? "fa-chevron-up" : "fa-chevron-down"
-                } float-right`}
-              />
-            </div>
-            {openDropdown === "order" && (
-              <ol className="dropdown-menu">
-                <li>
-                  <NavLink
-                    to="/orderinprogress"
-                    className={({ isActive }) =>
-                      isActive ? "nav-item active" : "nav-item"
-                    }
-                  >
-                    In Progress
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/orderdelivered"
-                    className={({ isActive }) =>
-                      isActive ? "nav-item active" : "nav-item"
-                    }
-                  >
-                    Delivered
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/ordercancelled"
-                    className={({ isActive }) =>
-                      isActive ? "nav-item active" : "nav-item"
-                    }
-                  >
-                    Cancelled
-                  </NavLink>
-                </li>
-              </ol>
-            )}
-          </li>
+              <div
+                onClick={() => toggleDropdown("order")}
+                className="dropdown-toggle"
+              >
+                <span className="Icon">
+                  <i className="fa fa-server" />
+                </span>{" "}
+                Order Management
+                <i
+                  className={`fa ${
+                    openDropdown === "order"
+                      ? "fa-chevron-up"
+                      : "fa-chevron-down"
+                  } float-right`}
+                />
+              </div>
+              {openDropdown === "order" && (
+                <ol className="dropdown-menu">
+                  <li>
+                    <NavLink
+                      to="/orderinprogress"
+                      className={({ isActive }) =>
+                        isActive ? "nav-item active" : "nav-item"
+                      }
+                    >
+                      In Progress
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/orderdelivered"
+                      className={({ isActive }) =>
+                        isActive ? "nav-item active" : "nav-item"
+                      }
+                    >
+                      Delivered
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/ordercancelled"
+                      className={({ isActive }) =>
+                        isActive ? "nav-item active" : "nav-item"
+                      }
+                    >
+                      Cancelled
+                    </NavLink>
+                  </li>
+                </ol>
+              )}
+            </li>
+          )}
 
           {/* Payment Management */}
-          <li
-            className={`dropdown ${openDropdown === "payment" ? "active" : ""}`}
-          >
-            <div
-              onClick={() => toggleDropdown("payment")}
-              className="dropdown-toggle"
+          {(roleType === "Admin" || hasReadAccess("Payment Management")) && (
+            <li
+              className={`dropdown ${
+                openDropdown === "payment" ? "active" : ""
+              }`}
             >
-              <span className="Icon">
-                <i className="fa fa-credit-card" />
-              </span>{" "}
-              Payment Management
-              <i
-                className={`fa ${
-                  openDropdown === "payment"
-                    ? "fa-chevron-up"
-                    : "fa-chevron-down"
-                } float-right`}
-              />
-            </div>
-            {openDropdown === "payment" && (
-              <ol className="dropdown-menu">
-                <li>
-                  <NavLink
-                    to="/paymentrevenue"
-                    className={({ isActive }) =>
-                      isActive ? "nav-item active" : "nav-item"
-                    }
-                  >
-                    Reconciliation Revenue
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/paymentwithdrawal"
-                    className={({ isActive }) =>
-                      isActive ? "nav-item active" : "nav-item"
-                    }
-                  >
-                    Reconciliation Withdrawal
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/paymentamount"
-                    className={({ isActive }) =>
-                      isActive ? "nav-item active" : "nav-item"
-                    }
-                  >
-                    Withdrawal Amount
-                  </NavLink>
-                </li>
-              </ol>
-            )}
-          </li>
+              <div
+                onClick={() => toggleDropdown("payment")}
+                className="dropdown-toggle"
+              >
+                <span className="Icon">
+                  <i className="fa fa-credit-card" />
+                </span>{" "}
+                Payment Management
+                <i
+                  className={`fa ${
+                    openDropdown === "payment"
+                      ? "fa-chevron-up"
+                      : "fa-chevron-down"
+                  } float-right`}
+                />
+              </div>
+              {openDropdown === "payment" && (
+                <ol className="dropdown-menu">
+                  <li>
+                    <NavLink
+                      to="/paymentrevenue"
+                      className={({ isActive }) =>
+                        isActive ? "nav-item active" : "nav-item"
+                      }
+                    >
+                      Reconciliation Revenue
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/paymentwithdrawal"
+                      className={({ isActive }) =>
+                        isActive ? "nav-item active" : "nav-item"
+                      }
+                    >
+                      Reconciliation Withdrawal
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/paymentamount"
+                      className={({ isActive }) =>
+                        isActive ? "nav-item active" : "nav-item"
+                      }
+                    >
+                      Withdrawal Amount
+                    </NavLink>
+                  </li>
+                </ol>
+              )}
+            </li>
+          )}
 
           {/* Sub Admin Management */}
-          <li
-            className={`dropdown ${
-              openDropdown === "subadmin" ? "active" : ""
-            }`}
-          >
-            <div
-              onClick={() => toggleDropdown("subadmin")}
-              className="dropdown-toggle"
+          {(roleType === "Admin" || hasReadAccess("Sub Admin Management")) && (
+            <li
+              className={`dropdown ${
+                openDropdown === "subadmin" ? "active" : ""
+              }`}
             >
-              <span className="Icon">
-                <i className="fa fa-users" />
-              </span>{" "}
-              Sub Admin Management
-              <i
-                className={`fa ${
-                  openDropdown === "subadmin"
-                    ? "fa-chevron-up"
-                    : "fa-chevron-down"
-                } float-right`}
-              />
-            </div>
-            {openDropdown === "subadmin" && (
-              <ol className="dropdown-menu">
-                <li>
-                  <NavLink
-                    to="/subadmin"
-                    className={({ isActive }) =>
-                      isActive ? "nav-item active" : "nav-item"
-                    }
-                  >
-                    Sub Admin
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/subadminroles"
-                    className={({ isActive }) =>
-                      isActive ? "nav-item active" : "nav-item"
-                    }
-                  >
-                    Roles
-                  </NavLink>
-                </li>
-              </ol>
-            )}
-          </li>
+              <div
+                onClick={() => toggleDropdown("subadmin")}
+                className="dropdown-toggle"
+              >
+                <span className="Icon">
+                  <i className="fa fa-users" />
+                </span>{" "}
+                Sub Admin Management
+                <i
+                  className={`fa ${
+                    openDropdown === "subadmin"
+                      ? "fa-chevron-up"
+                      : "fa-chevron-down"
+                  } float-right`}
+                />
+              </div>
+              {openDropdown === "subadmin" && (
+                <ol className="dropdown-menu">
+                  <li>
+                    <NavLink
+                      to="/subadmin"
+                      className={({ isActive }) =>
+                        isActive ? "nav-item active" : "nav-item"
+                      }
+                    >
+                      Sub Admin
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/subadminroles"
+                      className={({ isActive }) =>
+                        isActive ? "nav-item active" : "nav-item"
+                      }
+                    >
+                      Roles
+                    </NavLink>
+                  </li>
+                </ol>
+              )}
+            </li>
+          )}
 
-          <li>
-            <NavLink
-              to="/pricemanagement"
-              className={({ isActive }) =>
-                isActive ? "nav-item active" : "nav-item"
-              }
-            >
-              <span className="Icon">
-                <i className="fa fa-cube" />
-              </span>{" "}
-              Price Management
-            </NavLink>
-          </li>
+          {/* Price Management */}
+          {(roleType === "Admin" || hasReadAccess("Price Management")) && (
+            <li>
+              <NavLink
+                to="/pricemanagement"
+                className={({ isActive }) =>
+                  isActive ? "nav-item active" : "nav-item"
+                }
+              >
+                <span className="Icon">
+                  <i className="fa fa-cube" />
+                </span>{" "}
+                Price Management
+              </NavLink>
+            </li>
+          )}
 
-          <li>
-            <NavLink
-              to="/settings"
-              className={({ isActive }) =>
-                isActive ? "nav-item active" : "nav-item"
-              }
-            >
-              <span className="Icon">
-                <i className="fa fa-sliders" />
-              </span>{" "}
-              Settings
-            </NavLink>
-          </li>
+          {/* Settings */}
+          {(roleType === "Admin" || hasReadAccess("Settings")) && (
+            <li>
+              <NavLink
+                to="/settings"
+                className={({ isActive }) =>
+                  isActive ? "nav-item active" : "nav-item"
+                }
+              >
+                <span className="Icon">
+                  <i className="fa fa-sliders" />
+                </span>{" "}
+                Settings
+              </NavLink>
+            </li>
+          )}
         </ul>
       </div>
 

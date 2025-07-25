@@ -69,7 +69,6 @@ const Login = () => {
       const message = res?.payload?.data?.message;
 
       if (status === 200) {
-        toast.success(message);
         if (check) {
           localStorage.setItem("email", email_id);
           localStorage.setItem("password", password);
@@ -80,6 +79,7 @@ const Login = () => {
           localStorage.removeItem("check");
         }
         navigate("/dashboard");
+        toast.success(message);
       } else if (status === 401) {
         toast.error(message || "User not found");
       } else {
@@ -87,6 +87,7 @@ const Login = () => {
       }
     } catch (err) {
       toast.error("Something went wrong");
+      // console.log(err);
     } finally {
       setFormState((prev) => ({ ...prev, disable: false }));
     }

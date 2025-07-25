@@ -36,13 +36,12 @@ export const signup = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const admin = await Admin.findOne({ email });
-    let roleType = "admin";
+    let admin = await Admin.findOne({ email });
+    let roleType = "Admin";
 
     if (!admin) {
-      // If not admin, check Subadmins
-      admin = await Subadmin.findOne({ email });
-      roleType = "subadmin";
+      admin = await Subadmin.findOne({ subadminEmail: email });
+      roleType = "Subadmin";
     }
 
     if (!admin) {
@@ -50,7 +49,20 @@ export const login = async (req, res) => {
         message: "Invalid credentials, please check email and password",
       });
     }
-    let verify = await bcrypt.compare(password, admin.password);
+
+    if (
+      admin?.subadminStatus === "Delete" ||
+      admin?.subadminStatus === "Inactive"
+    ) {
+      return res.status(401).json({
+        message: "Sub Admin is not Active",
+      });
+    }
+
+    let verify =
+      roleType === "Subadmin"
+        ? password == admin.subadminPassword
+        : await bcrypt.compare(password, admin.password);
     if (!verify) {
       return res.status(401).json({
         message: "Invalid credentials, please check email and password",
@@ -59,7 +71,7 @@ export const login = async (req, res) => {
     genToken(res, admin, roleType);
     let roleData = {};
 
-    if (roleType === "subadmin") {
+    if (roleType === "Subadmin") {
       const role = await Role.findById(admin.subadminRoleId);
       roleData = {
         roleName: admin.subadminRoleName,
@@ -68,13 +80,13 @@ export const login = async (req, res) => {
       };
     }
 
+    const userEmail = roleType === "Admin" ? admin.email : admin.subadminEmail;
+
     return res.status(200).json({
-      message: `${
-        roleType === "admin" ? "Admin" : "Subadmin"
-      } login successfully`,
+      message: `${roleType} login successfully`,
       admin: {
         id: admin._id,
-        email: admin.email || admin.subadminEmail,
+        email: userEmail,
         roleType,
         ...roleData,
       },

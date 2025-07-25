@@ -160,7 +160,9 @@ export const adminLogout = createAsyncThunk(
 );
 
 const initialState = {
+  permissionsList: null,
   adminProfile: null,
+  roleType: null,
   loader: false,
   error: null,
 };
@@ -180,6 +182,8 @@ const authMgmtSlice = createSlice({
       .addCase(adminLogin.fulfilled, (state, action) => {
         state.loader = false;
         state.adminProfile = action.payload?.data;
+        state.permissionsList = action.payload?.data?.admin?.moduleAccess;
+        state.roleType = action.payload?.data?.admin?.roleType;
         state.error = null;
       })
       .addCase(adminLogin.rejected, (state, action) => {
@@ -254,11 +258,12 @@ const authMgmtSlice = createSlice({
       .addCase(adminLogout.fulfilled, (state) => {
         state.loader = false;
         state.adminProfile = null;
+        state.permissionsList = null;
+        state.roleType = null;
         state.error = null;
       })
       .addCase(adminLogout.rejected, (state, action) => {
         state.loader = false;
-        state.adminProfile = null;
         state.error = action.payload?.data?.message || "Logout failed";
       });
   },

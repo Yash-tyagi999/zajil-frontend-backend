@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-import { Provider } from "react-redux";
 import { Toaster } from "react-hot-toast";
 
 import Login from "./pages/Login";
@@ -40,70 +39,59 @@ import SubadminDetails from "./pages/SubadminDetails";
 
 function App() {
   return (
-    <Provider store={store}>
-      <div>
-        <SyncLogout />
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/loginforgot" element={<LoginForgot />} />
-          <Route path="/loginverification" element={<LoginVerification />} />
-          <Route path="/loginreset" element={<LoginReset />} />
-          <Route path="/loginsuccess" element={<LoginSuccess />} />
-          
-          <Route element={<UserAuthProtect />}>
-            <Route element={<HeaderSidenav />}>
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/usercustomer" element={<UserCustomer />} />
-              <Route path="/createuser" element={<CreateUser />} />
-              <Route
-                path="/usercustomerdetails/:userId"
-                element={<UserCustomerDetails />}
-              />
-              <Route path="/orderdetails/:orderId" element={<OrderDetails />} />
-              <Route path="/userrider" element={<UserRider />} />
-              <Route path="/userrideradd" element={<UserRiderAdd />} />
-              <Route
-                path="/userriderdetails/:userId"
-                element={<UserRiderDetails />}
-              />
-              <Route path="/branchmanagement" element={<BranchManagement />} />
-              <Route path="/createbranch" element={<CreateBranch />} />
-              <Route path="/bannermanagement" element={<BannerManagement />} />
-              <Route
-                path="/companymanagement"
-                element={<CompanyManagement />}
-              />
-              <Route
-                path="/vehiclemanagement"
-                element={<VehicleManagement />}
-              />
-              <Route path="/orderinprogress" element={<OrderInprogress />} />
-              <Route path="/orderdelivered" element={<OrderDelivered />} />
-              <Route path="/ordercancelled" element={<OrderCancelled />} />
-              <Route path="/paymentrevenue" element={<PaymentRevenue />} />
-              <Route path="/paymentamount" element={<PaymentAmount />} />
-              <Route
-                path="/paymentwithdrawal"
-                element={<PaymentWithdrawal />}
-              />
-              <Route path="/subadmin" element={<Subadmin />} />
-              <Route path="/subadminroles" element={<SubadminRoles />} />
-              <Route path="/subadminrolesadd" element={<SubadminRolesAdd />} />
-              <Route
-                path="/subadminrolesedit/:roleId"
-                element={<SubadminRolesEdit />}
-              />
-              <Route path="/subadmindetails" element={<SubadminDetails />} />
-              <Route path="/settings" element={<Settings />} />
-              <Route path="/pricemanagement" element={<PriceManagement />} />
-            </Route>
-          </Route>
+    <div>
+      <SyncLogout />
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/loginforgot" element={<LoginForgot />} />
+        <Route path="/loginverification" element={<LoginVerification />} />
+        <Route path="/loginreset" element={<LoginReset />} />
+        <Route path="/loginsuccess" element={<LoginSuccess />} />
 
-        </Routes>
-        <Toaster />
-      </div>
-    </Provider>
+        <Route element={<UserAuthProtect />}>
+          <Route element={<HeaderSidenav />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/usercustomer" element={<UserCustomer />} />
+            <Route path="/createuser" element={<CreateUser />} />
+            <Route
+              path="/usercustomerdetails/:userId"
+              element={<UserCustomerDetails />}
+            />
+            <Route path="/orderdetails/:orderId" element={<OrderDetails />} />
+            <Route path="/userrider" element={<UserRider />} />
+            <Route path="/userrideradd" element={<UserRiderAdd />} />
+            <Route
+              path="/userriderdetails/:userId"
+              element={<UserRiderDetails />}
+            />
+            <Route path="/branchmanagement" element={<BranchManagement />} />
+            <Route path="/createbranch" element={<CreateBranch />} />
+            <Route path="/bannermanagement" element={<BannerManagement />} />
+            <Route path="/companymanagement" element={<CompanyManagement />} />
+            <Route path="/vehiclemanagement" element={<VehicleManagement />} />
+            <Route path="/orderinprogress" element={<OrderInprogress />} />
+            <Route path="/orderdelivered" element={<OrderDelivered />} />
+            <Route path="/ordercancelled" element={<OrderCancelled />} />
+
+            <Route path="/paymentrevenue" element={<PaymentRevenue />} />
+            <Route path="/paymentamount" element={<PaymentAmount />} />
+            <Route path="/paymentwithdrawal" element={<PaymentWithdrawal />} />
+            <Route path="/subadmin" element={<Subadmin />} />
+            <Route path="/subadminroles" element={<SubadminRoles />} />
+            <Route path="/subadminrolesadd" element={<SubadminRolesAdd />} />
+            <Route
+              path="/subadminrolesedit/:roleId"
+              element={<SubadminRolesEdit />}
+            />
+            <Route path="/subadmindetails" element={<SubadminDetails />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/pricemanagement" element={<PriceManagement />} />
+          </Route>
+        </Route>
+      </Routes>
+      <Toaster />
+    </div>
   );
 }
 

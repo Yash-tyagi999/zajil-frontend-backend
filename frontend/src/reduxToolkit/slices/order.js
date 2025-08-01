@@ -94,17 +94,17 @@ const orderMgmtSlice = createSlice({
     builder;
     //   .addCase(getOrders.pending, (state) => {
     //     state.loader = true;
-    //     state.branch = null;
+    //     state.order = null;
     //     state.error = null;
     //   })
     //   .addCase(getOrders.fulfilled, (state, action) => {
     //     state.loader = false;
-    //     state.branch = action.payload?.data;
+    //     state.order = action.payload?.data;
     //     state.error = null;
     //   })
     //   .addCase(getOrders.rejected, (state, action) => {
     //     state.loader = false;
-    //     state.branch = null;
+    //     state.order = null;
     //     state.error =
     //       action.payload?.data?.message || "Order creation failed";
     //   });

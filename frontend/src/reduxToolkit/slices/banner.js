@@ -118,17 +118,17 @@ const bannerMgmtSlice = createSlice({
     builder
       .addCase(createBanner.pending, (state) => {
         state.loader = true;
-        state.branch = null;
+        state.banner = null;
         state.error = null;
       })
       .addCase(createBanner.fulfilled, (state, action) => {
         state.loader = false;
-        state.branch = action.payload?.data;
+        state.banner = action.payload?.data;
         state.error = null;
       })
       .addCase(createBanner.rejected, (state, action) => {
         state.loader = false;
-        state.branch = null;
+        state.banner = null;
         state.error = action.payload?.data?.message || "Banner creation failed";
       });
   },

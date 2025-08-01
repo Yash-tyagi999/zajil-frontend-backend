@@ -118,17 +118,17 @@ const companyMgmtSlice = createSlice({
     builder
       .addCase(createCompany.pending, (state) => {
         state.loader = true;
-        state.branch = null;
+        state.company = null;
         state.error = null;
       })
       .addCase(createCompany.fulfilled, (state, action) => {
         state.loader = false;
-        state.branch = action.payload?.data;
+        state.company = action.payload?.data;
         state.error = null;
       })
       .addCase(createCompany.rejected, (state, action) => {
         state.loader = false;
-        state.branch = null;
+        state.company = null;
         state.error =
           action.payload?.data?.message || "Company creation failed";
       });
